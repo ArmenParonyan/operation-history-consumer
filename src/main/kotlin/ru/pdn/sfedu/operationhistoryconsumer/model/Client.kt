@@ -6,11 +6,15 @@ import javax.persistence.*
 @Table(name = "client")
 class Client (
         @Column(name = "name")
-        val name: String? = null,
+        var name: String? = null,
         @Column(name = "secondName")
-        val secondName: String? = null,
+        var secondName: String? = null,
         @Column(name = "age")
-        val age: Int? = null,
-        @OneToMany(mappedBy = "client", cascade = arrayOf(CascadeType.ALL))
-        val operations: List<Operation> = arrayListOf()
-): Domain()
+        var age: Int? = null,
+        @OneToMany(mappedBy = "client", cascade = [CascadeType.ALL], orphanRemoval = true)
+        var operations: List<Operation> = arrayListOf()
+): Domain(){
+        override fun toString(): String {
+                return "Client(name=$name, secondName=$secondName, age=$age, operations=$operations)"
+        }
+}

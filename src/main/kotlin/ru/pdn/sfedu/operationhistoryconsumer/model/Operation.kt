@@ -34,7 +34,7 @@ class Operation (
         val docId: Long? = null,
         @ManyToOne
         @JoinColumn(name = "clientId")
-        val client: Client? = null
+        var client: Client? = null
 ): Domain() {
     override fun toString(): String {
         return "Operation(amount=$amount, date=$date)"
