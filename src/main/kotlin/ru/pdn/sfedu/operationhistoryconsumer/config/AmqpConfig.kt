@@ -19,39 +19,9 @@ const val OPERATION = "operation"
 
 @Configuration
 class AmqpConfig {
-
-//    @Bean
-//    fun rabbitTemplate(connectionFactory: ConnectionFactory) = RabbitTemplate(connectionFactory).apply {
-//        messageConverter = Jackson2JsonMessageConverter()
-//    }
-//
-//    @Bean
-//    fun opetarionQueue() = Queue(OPERATION)
-//
-//    @Bean
-//    fun operationExchange() = DirectExchange("operation.direct")
-//
-//    @Bean
-//    fun operationBinding() = BindingBuilder
-//            .bind(operationExchange())
-//            .to(operationExchange())
-//            .with(OPERATION)
-
     @Bean
     fun rabbitListenerContainerFactory(connectionFactory: ConnectionFactory) = SimpleRabbitListenerContainerFactory().apply {
         setConnectionFactory(connectionFactory)
         setMessageConverter(Jackson2JsonMessageConverter())
     }
-
 }
-//@Configuration
-//class RabbitConfig: RabbitListenerConfigurer{
-//    override fun configureRabbitListeners(registrar: RabbitListenerEndpointRegistrar) {
-//        registrar.messageHandlerMethodFactory = messageHandlerMethodFactory()
-//    }
-//
-//    fun messageHandlerMethodFactory() = DefaultMessageHandlerMethodFactory().apply {
-//        setMessageConverter(MappingJackson2MessageConverter())
-//    }
-//
-//}
